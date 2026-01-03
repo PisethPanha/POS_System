@@ -2,7 +2,7 @@
 
 Public Class Dashboard_frm
     Private Sub Label3_Click(sender As Object, e As EventArgs) Handles lbStockForm.Click
-        If LoginForm.role <> "stock_manager" Then
+        If LoginForm.role <> "stock_manager" And LoginForm.role <> "administrator" Then
             MessageBox.Show("Your role cannot access this page")
             Return
         End If
@@ -11,7 +11,7 @@ Public Class Dashboard_frm
     End Sub
 
     Private Sub Panel1_Click(sender As Object, e As EventArgs) Handles Panel1.Click
-        If LoginForm.role <> "cashier" Then
+        If LoginForm.role <> "cashier" And LoginForm.role <> "administrator" Then
             MessageBox.Show("Your role cannot access this page")
             Return
         End If
@@ -20,7 +20,7 @@ Public Class Dashboard_frm
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        If LoginForm.role <> "cashier" Then
+        If LoginForm.role <> "cashier" And LoginForm.role <> "administrator" Then
             MessageBox.Show("Your role cannot access this page")
             Return
         End If
@@ -29,7 +29,7 @@ Public Class Dashboard_frm
     End Sub
 
     Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
-        If LoginForm.role <> "cashier" Then
+        If LoginForm.role <> "cashier" And LoginForm.role <> "administrator" Then
             MessageBox.Show("Your role cannot access this page")
             Return
         End If
@@ -38,7 +38,7 @@ Public Class Dashboard_frm
     End Sub
 
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
-        If LoginForm.role <> "stock_manager" Then
+        If LoginForm.role <> "stock_manager" And LoginForm.role <> "administrator" Then
             MessageBox.Show("Your role cannot access this page")
             Return
         End If
@@ -59,7 +59,7 @@ Public Class Dashboard_frm
     End Sub
 
     Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
-        If LoginForm.role <> "stock_manager" Then
+        If LoginForm.role <> "stock_manager" And LoginForm.role <> "administrator" Then
             MessageBox.Show("Your role cannot access this page")
             Return
         End If
