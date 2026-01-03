@@ -35,6 +35,8 @@ Partial Class stock_control
         pbImg = New PictureBox()
         Label8 = New Label()
         Panel1 = New Panel()
+        txtSuplier = New TextBox()
+        Label11 = New Label()
         lbDate = New Label()
         Panel2 = New Panel()
         txtCatagory = New ComboBox()
@@ -52,6 +54,7 @@ Partial Class stock_control
         Button1 = New Button()
         txtSearch = New TextBox()
         Label9 = New Label()
+        Label12 = New Label()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         CType(pbImg, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
@@ -67,7 +70,7 @@ Partial Class stock_control
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {product_image})
         DataGridView1.Location = New Point(2, 68)
         DataGridView1.Name = "DataGridView1"
-        DataGridView1.Size = New Size(640, 554)
+        DataGridView1.Size = New Size(640, 591)
         DataGridView1.TabIndex = 0
         ' 
         ' product_image
@@ -171,16 +174,17 @@ Partial Class stock_control
         Label8.BackColor = Color.FromArgb(CByte(192), CByte(0), CByte(192))
         Label8.Font = New Font("Khmer OS Battambang", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label8.ForeColor = SystemColors.ButtonHighlight
-        Label8.Location = New Point(667, 0)
+        Label8.Location = New Point(2, 0)
         Label8.Name = "Label8"
-        Label8.Size = New Size(731, 56)
+        Label8.Size = New Size(1396, 50)
         Label8.TabIndex = 14
-        Label8.Text = "ព័ត៌មានផលិតផល"
         Label8.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Panel1
         ' 
         Panel1.BackColor = Color.FromArgb(CByte(255), CByte(192), CByte(255))
+        Panel1.Controls.Add(txtSuplier)
+        Panel1.Controls.Add(Label11)
         Panel1.Controls.Add(lbDate)
         Panel1.Controls.Add(Panel2)
         Panel1.Controls.Add(txtQuantity)
@@ -199,10 +203,30 @@ Partial Class stock_control
         Panel1.Controls.Add(txtName)
         Panel1.Controls.Add(Label1)
         Panel1.Controls.Add(Label5)
-        Panel1.Location = New Point(667, 52)
+        Panel1.Location = New Point(667, 49)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(731, 570)
+        Panel1.Size = New Size(731, 573)
         Panel1.TabIndex = 15
+        ' 
+        ' txtSuplier
+        ' 
+        txtSuplier.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        txtSuplier.Location = New Point(183, 412)
+        txtSuplier.Multiline = True
+        txtSuplier.Name = "txtSuplier"
+        txtSuplier.Size = New Size(300, 41)
+        txtSuplier.TabIndex = 27
+        txtSuplier.TextAlign = HorizontalAlignment.Center
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label11.Location = New Point(81, 419)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(99, 34)
+        Label11.TabIndex = 26
+        Label11.Text = "អ្នកផ្គត់ផ្គង់"
         ' 
         ' lbDate
         ' 
@@ -284,7 +308,7 @@ Partial Class stock_control
         Label7.BackColor = Color.FromArgb(CByte(64), CByte(0), CByte(64))
         Label7.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label7.ForeColor = SystemColors.ButtonHighlight
-        Label7.Location = New Point(86, 432)
+        Label7.Location = New Point(86, 463)
         Label7.Name = "Label7"
         Label7.Size = New Size(482, 37)
         Label7.TabIndex = 19
@@ -302,7 +326,7 @@ Partial Class stock_control
         TableLayoutPanel1.Controls.Add(btnNew, 3, 0)
         TableLayoutPanel1.Controls.Add(btnUpdate, 1, 0)
         TableLayoutPanel1.Controls.Add(btnDel, 2, 0)
-        TableLayoutPanel1.Location = New Point(86, 467)
+        TableLayoutPanel1.Location = New Point(86, 498)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 1
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
@@ -383,28 +407,42 @@ Partial Class stock_control
         ' txtSearch
         ' 
         txtSearch.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        txtSearch.Location = New Point(187, 7)
+        txtSearch.Location = New Point(175, 7)
         txtSearch.Multiline = True
         txtSearch.Name = "txtSearch"
-        txtSearch.Size = New Size(316, 29)
+        txtSearch.Size = New Size(316, 36)
         txtSearch.TabIndex = 25
         txtSearch.TextAlign = HorizontalAlignment.Center
         ' 
         ' Label9
         ' 
         Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label9.Location = New Point(113, 9)
+        Label9.BackColor = Color.FromArgb(CByte(192), CByte(0), CByte(192))
+        Label9.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label9.ForeColor = SystemColors.ButtonHighlight
+        Label9.Location = New Point(82, 1)
         Label9.Name = "Label9"
-        Label9.Size = New Size(68, 25)
+        Label9.Size = New Size(99, 37)
         Label9.TabIndex = 24
         Label9.Text = "search"
+        ' 
+        ' Label12
+        ' 
+        Label12.BackColor = Color.FromArgb(CByte(192), CByte(0), CByte(192))
+        Label12.Font = New Font("Khmer OS Battambang", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label12.ForeColor = SystemColors.ButtonHighlight
+        Label12.Location = New Point(876, 1)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(282, 49)
+        Label12.TabIndex = 26
+        Label12.Text = "ព័ត៌មានផលិតផល"
         ' 
         ' stock_control
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1399, 621)
+        Controls.Add(Label12)
         Controls.Add(txtSearch)
         Controls.Add(Label9)
         Controls.Add(Button1)
@@ -453,4 +491,7 @@ Partial Class stock_control
     Friend WithEvents Panel2 As Panel
     Friend WithEvents lbDate As Label
     Friend WithEvents txtPrice As TextBox
+    Friend WithEvents txtSuplier As TextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label12 As Label
 End Class
