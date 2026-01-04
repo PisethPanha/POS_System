@@ -74,7 +74,7 @@ Partial Class stock_control
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {product_image})
         DataGridView1.Location = New Point(2, 68)
         DataGridView1.Name = "DataGridView1"
-        DataGridView1.Size = New Size(640, 591)
+        DataGridView1.Size = New Size(640, 643)
         DataGridView1.TabIndex = 0
         ' 
         ' product_image
@@ -203,7 +203,7 @@ Partial Class stock_control
         Panel1.Controls.Add(Label5)
         Panel1.Location = New Point(667, 49)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(731, 573)
+        Panel1.Size = New Size(731, 662)
         Panel1.TabIndex = 15
         ' 
         ' txtCatagory
@@ -491,7 +491,7 @@ Partial Class stock_control
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1370, 621)
+        ClientSize = New Size(1370, 709)
         Controls.Add(Label12)
         Controls.Add(txtSearch)
         Controls.Add(Label9)
