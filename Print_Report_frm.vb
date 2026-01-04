@@ -4,7 +4,7 @@ Imports System.Drawing.Printing
 
 Public Class Print_Report_frm
 
-    Private conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\ICT\source\repos\POS_System\admin.accdb;")
+    Private conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & IO.Directory.GetParent(Application.StartupPath).Parent.FullName.Substring(0, IO.Directory.GetParent(Application.StartupPath).Parent.FullName.Length - 9) & "\" & "admin.accdb;")
     Dim WithEvents PD As New Printing.PrintDocument
     Dim rowIndex As Integer = 0
 

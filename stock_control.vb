@@ -6,7 +6,7 @@ Imports POS_System.My.Resources
 
 
 Public Class stock_control
-    Private conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\ICT\source\repos\POS_System\admin.accdb;")
+    Private conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & IO.Directory.GetParent(Application.StartupPath).Parent.FullName.Substring(0, IO.Directory.GetParent(Application.StartupPath).Parent.FullName.Length - 9) & "\" & "admin.accdb;")
     Private currentChange As IsChange
     Private RowIndex As Integer = -1
 
@@ -312,5 +312,13 @@ Public Class stock_control
 
     Private Sub stock_controlClosing(sender As Object, e As EventArgs) Handles Me.Closing
         Application.Exit()
+    End Sub
+
+    Private Sub txtModel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles txtModel.SelectedIndexChanged
+        Try
+            Dim query As String = "select * from model"
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

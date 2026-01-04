@@ -9,7 +9,7 @@ Imports POS_System.My.Resources
 
 
 Public Class Add_Stock_frm
-    Dim conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\ICT\source\repos\POS_System\admin.accdb;")
+    Dim conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & IO.Directory.GetParent(Application.StartupPath).Parent.FullName.Substring(0, IO.Directory.GetParent(Application.StartupPath).Parent.FullName.Length - 9) & "\" & "admin.accdb;")
 
     Public Function loadData()
         conn.Open()

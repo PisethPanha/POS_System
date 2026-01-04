@@ -2,7 +2,7 @@
 Imports System.IO
 
 Public Class Product_Control
-    Private conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\ICT\source\repos\POS_System\admin.accdb;")
+    Private conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & IO.Directory.GetParent(Application.StartupPath).Parent.FullName.Substring(0, IO.Directory.GetParent(Application.StartupPath).Parent.FullName.Length - 9) & "\" & "admin.accdb;")
     Private Function ImageToByteArray(img As Image) As Byte()
         Using ms As New MemoryStream()
             Using bmp As New Bitmap(img)
@@ -45,5 +45,9 @@ Public Class Product_Control
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
+    End Sub
+
+    Private Sub Product_Control_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class
