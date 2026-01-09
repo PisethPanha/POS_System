@@ -234,6 +234,7 @@ Public Class Staff_Management
         txtTelegram.Text = DataGridView1.Rows(e.RowIndex).Cells("telegram").Value
         txtUserName.Text = DataGridView1.Rows(e.RowIndex).Cells("user_log").Value
         txtPass.Text = DataGridView1.Rows(e.RowIndex).Cells("pass_log").Value
+        cbRole.Text = DataGridView1.Rows(e.RowIndex).Cells("role_name").Value
         pbImg.Image = Image.FromStream(ms)
     End Sub
 

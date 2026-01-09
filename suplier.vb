@@ -303,5 +303,7 @@ Public Class suplier
 
     Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
         reset()
+        lbTotal.Visible = False
+        lbIsSelect.Visible = True
     End Sub
 End Class
