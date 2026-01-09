@@ -357,7 +357,7 @@ Partial Class sell_point
         btnAccept.BackColor = Color.FromArgb(CByte(192), CByte(0), CByte(192))
         btnAccept.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnAccept.ForeColor = SystemColors.ButtonHighlight
-        btnAccept.Location = New Point(771, 721)
+        btnAccept.Location = New Point(768, 670)
         btnAccept.Name = "btnAccept"
         btnAccept.Size = New Size(431, 45)
         btnAccept.TabIndex = 1

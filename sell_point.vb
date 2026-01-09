@@ -455,8 +455,13 @@ Public Class sell_point
             cmd1.Parameters.AddWithValue("?", Date.Today.ToString("MM/dd/yyyy"))
             cmd1.ExecuteNonQuery()
 
+            Dim query2 As String = "update product set quantity = quantity - " & it.quantity & " where ID = " & it.id
+            Dim cmd2 As New OleDbCommand(query2, conn)
+
+            cmd2.ExecuteNonQuery()
             conn.Close()
         Next
+        loadData()
         reset()
 
     End Sub
