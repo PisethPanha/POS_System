@@ -11,15 +11,28 @@ Imports POS_System.My.Resources
 Public Class Add_Stock_frm
     Dim conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & IO.Directory.GetParent(Application.StartupPath).Parent.FullName.Substring(0, IO.Directory.GetParent(Application.StartupPath).Parent.FullName.Length - 9) & "\" & "admin.accdb;")
 
-    Public Function loadData()
+    Public pro_id As Integer
+        Public brand_id As Integer
+        Public ram_id As Integer
+        Public storage_id As Integer
+        Public sup_id As Integer
+
+
+
+
+        Public Function loadData()
         conn.Open()
-        Dim query As String = "SELECT * FROM product_query"
+        Dim query As String = "select * from product_query"
         Dim adapter As New OleDbDataAdapter(query, conn)
         Dim data As New DataTable()
         adapter.Fill(data)
         DataGridView1.RowTemplate.Height = 100
         DataGridView1.DataSource = data
         DataGridView1.Columns("product_img").Visible = False
+        DataGridView1.Columns("brand_ID").Visible = False
+        DataGridView1.Columns("ram_size_id").Visible = False
+        DataGridView1.Columns("storage_id").Visible = False
+        DataGridView1.Columns("sup_id").Visible = False
         DataGridView1.AllowUserToAddRows = False
         DataGridView1.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         For Each row As DataGridViewRow In DataGridView1.Rows
@@ -32,7 +45,6 @@ Public Class Add_Stock_frm
     Public Function reset()
         lbID.Text = ""
         lbName.Text = ""
-        lbCatagory.Text = ""
         lbQuantity.Text = ""
         txtQuantity.Text = ""
         lbPrice.Text = ""
@@ -43,21 +55,7 @@ Public Class Add_Stock_frm
 
 
     Private Sub Add_Stock_frm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        conn.Open()
-        Dim query As String = "SELECT * FROM product_query"
-        Dim adapter As New OleDbDataAdapter(query, conn)
-        Dim data As New DataTable()
-        adapter.Fill(data)
-        DataGridView1.RowTemplate.Height = 100
-        DataGridView1.DataSource = data
-        DataGridView1.Columns("product_img").Visible = False
-        DataGridView1.AllowUserToAddRows = False
-        DataGridView1.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        For Each row As DataGridViewRow In DataGridView1.Rows
-            row.Cells("product_image").Value = row.Cells("product_img").Value
-        Next
-
-        conn.Close()
+        loadData()
 
     End Sub
 
@@ -65,16 +63,28 @@ Public Class Add_Stock_frm
         If e.RowIndex >= 0 Then
 
             lbID.Text = DataGridView1.Rows(e.RowIndex).Cells("ID").Value
-            lbName.Text = DataGridView1.Rows(e.RowIndex).Cells("product_name").Value
-            lbCatagory.Text = DataGridView1.Rows(e.RowIndex).Cells("catagory").Value
+            lbName.Text = DataGridView1.Rows(e.RowIndex).Cells("model_name").Value
+            lbBrand.Text = DataGridView1.Rows(e.RowIndex).Cells("brand_name").Value
+            lbRam.Text = DataGridView1.Rows(e.RowIndex).Cells("ram_size").Value
+            lbStorage.Text = DataGridView1.Rows(e.RowIndex).Cells("storage_size").Value
             lbQuantity.Text = DataGridView1.Rows(e.RowIndex).Cells("quantity").Value
             lbPrice.Text = DataGridView1.Rows(e.RowIndex).Cells("price").Value
             lbDate.Text = CDate(DataGridView1.Rows(e.RowIndex).Cells("create_date").Value).ToString("MM/dd/yyyy")
-            lbTotal.Text = DataGridView1.Rows(e.RowIndex).Cells("total").Value
+            lbTotal.Text = DataGridView1.Rows(e.RowIndex).Cells("total_amount").Value
             Dim imgByte As Byte() = CType(DataGridView1.Rows(e.RowIndex).Cells("product_img").Value, Byte())
             Dim ms As New MemoryStream(imgByte)
             Dim img As Image = Image.FromStream(ms)
             pbImg.Image = img
+
+            pro_id = DataGridView1.Rows(e.RowIndex).Cells("ID").Value
+            brand_id = DataGridView1.Rows(e.RowIndex).Cells("brand_ID").Value
+            ram_id = DataGridView1.Rows(e.RowIndex).Cells("ram_size_id").Value
+            storage_id = DataGridView1.Rows(e.RowIndex).Cells("storage_id").Value
+            sup_id = DataGridView1.Rows(e.RowIndex).Cells("sup_id").Value
+
+
+            'MessageBox.Show(ProductIdInfo.pro_id & "  " &ProductIdInfo.brand_id & "  " & ProductIdInfo.ram_id )
+
         End If
 
 
@@ -92,6 +102,11 @@ Public Class Add_Stock_frm
             Return
         End If
 
+        If txtQuantity.Text = "" Then
+            MessageBox.Show("Please enter quantity to add")
+            Return
+        End If
+
         Try
             Dim quantity As Integer = txtQuantity.Text
         Catch ex As Exception
@@ -101,19 +116,17 @@ Public Class Add_Stock_frm
         End Try
         conn.Open()
         Dim query1 As String = "update product_query set quantity = quantity + ? where ID = ?"
-        Dim query2 As String = "insert into stock_in (product_id, product_name, quantity_in, date_in, catagory) values (?,?,?,?,?)"
+        Dim query2 As String = "insert into stock_in (product_id, quantity_in, date_in) values (?,?,?)"
         Try
-            Dim cmd1 As New OleDbCommand(query1, conn)
+            Dim cmd1 As New OleDbCommand(query2, conn)
+            cmd1.Parameters.AddWithValue("?", pro_id)
             cmd1.Parameters.AddWithValue("?", txtQuantity.Text)
-            cmd1.Parameters.AddWithValue("?", lbID.Text)
+            cmd1.Parameters.AddWithValue("?", Date.Today.ToString("MM/dd/yyyy"))
             cmd1.ExecuteNonQuery()
 
-            Dim cmd2 As New OleDbCommand(query2, conn)
-            cmd2.Parameters.AddWithValue("?", lbID.Text)
-            cmd2.Parameters.AddWithValue("?", lbName.Text)
+            Dim cmd2 As New OleDbCommand(query1, conn)
             cmd2.Parameters.AddWithValue("?", txtQuantity.Text)
-            cmd2.Parameters.AddWithValue("?", Date.Today.ToString("MM/dd/yyyy"))
-            cmd2.Parameters.AddWithValue("?", lbCatagory.Text)
+            cmd2.Parameters.AddWithValue("?", lbID.Text)
             cmd2.ExecuteNonQuery()
         Catch ex As Exception
             MessageBox.Show(ex.Message)

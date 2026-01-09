@@ -28,14 +28,6 @@ Partial Class sell_point
         bsProduct = New BindingSource(components)
         Label1 = New Label()
         TableLayoutPanel1 = New TableLayoutPanel()
-        Label2 = New Label()
-        Panel2 = New Panel()
-        lbKHR = New Label()
-        Label7 = New Label()
-        txtExchangeRate = New TextBox()
-        Label5 = New Label()
-        lbUSD = New Label()
-        Label3 = New Label()
         PrintDialog1 = New PrintDialog()
         Label4 = New Label()
         Panel3 = New Panel()
@@ -47,6 +39,9 @@ Partial Class sell_point
         lbFee = New Label()
         TableLayoutPanel2 = New TableLayoutPanel()
         Panel1 = New Panel()
+        lbBrand = New Label()
+        lbStorage = New Label()
+        lbRam = New Label()
         txtQuantity = New TextBox()
         lbID = New Label()
         btnAddCart = New Button()
@@ -61,15 +56,26 @@ Partial Class sell_point
         Label8 = New Label()
         TextBox1 = New TextBox()
         Panel4 = New Panel()
+        Label2 = New Label()
+        Label10 = New Label()
+        txtDisPercence = New TextBox()
+        Panel2 = New Panel()
+        lbKHR = New Label()
+        Label7 = New Label()
+        txtExchangeRate = New TextBox()
+        Label5 = New Label()
+        lbUSD = New Label()
+        Label3 = New Label()
+        cbDisType = New ComboBox()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         CType(bsProduct, ComponentModel.ISupportInitialize).BeginInit()
-        Panel2.SuspendLayout()
         Panel3.SuspendLayout()
         Panel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel5.SuspendLayout()
         Panel6.SuspendLayout()
         Panel4.SuspendLayout()
+        Panel2.SuspendLayout()
         SuspendLayout()
         ' 
         ' DataGridView1
@@ -109,100 +115,12 @@ Partial Class sell_point
         TableLayoutPanel1.ColumnCount = 1
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 20F))
-        TableLayoutPanel1.Location = New Point(712, 433)
+        TableLayoutPanel1.Location = New Point(11, 580)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 1
         TableLayoutPanel1.RowStyles.Add(New RowStyle())
         TableLayoutPanel1.Size = New Size(724, 421)
         TableLayoutPanel1.TabIndex = 3
-        ' 
-        ' Label2
-        ' 
-        Label2.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
-        Label2.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.ForeColor = SystemColors.ButtonHighlight
-        Label2.Location = New Point(0, 0)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(426, 45)
-        Label2.TabIndex = 4
-        Label2.Text = "Total Amout"
-        Label2.TextAlign = ContentAlignment.MiddleCenter
-        ' 
-        ' Panel2
-        ' 
-        Panel2.BorderStyle = BorderStyle.Fixed3D
-        Panel2.Controls.Add(lbKHR)
-        Panel2.Controls.Add(Label7)
-        Panel2.Controls.Add(txtExchangeRate)
-        Panel2.Controls.Add(Label5)
-        Panel2.Controls.Add(lbUSD)
-        Panel2.Controls.Add(Label3)
-        Panel2.Controls.Add(Label2)
-        Panel2.Location = New Point(1008, 56)
-        Panel2.Name = "Panel2"
-        Panel2.Size = New Size(428, 355)
-        Panel2.TabIndex = 5
-        ' 
-        ' lbKHR
-        ' 
-        lbKHR.BorderStyle = BorderStyle.Fixed3D
-        lbKHR.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lbKHR.Location = New Point(0, 271)
-        lbKHR.Name = "lbKHR"
-        lbKHR.Size = New Size(426, 47)
-        lbKHR.TabIndex = 10
-        lbKHR.Text = "៛៛៛"
-        lbKHR.TextAlign = ContentAlignment.MiddleCenter
-        ' 
-        ' Label7
-        ' 
-        Label7.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label7.Location = New Point(0, 218)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(426, 40)
-        Label7.TabIndex = 9
-        Label7.Text = "KHR"
-        Label7.TextAlign = ContentAlignment.TopCenter
-        ' 
-        ' txtExchangeRate
-        ' 
-        txtExchangeRate.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        txtExchangeRate.Location = New Point(150, 175)
-        txtExchangeRate.Name = "txtExchangeRate"
-        txtExchangeRate.Size = New Size(190, 23)
-        txtExchangeRate.TabIndex = 8
-        txtExchangeRate.TextAlign = HorizontalAlignment.Center
-        ' 
-        ' Label5
-        ' 
-        Label5.AutoSize = True
-        Label5.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(3, 175)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(141, 25)
-        Label5.TabIndex = 7
-        Label5.Text = "Exchange Rate"
-        ' 
-        ' lbUSD
-        ' 
-        lbUSD.BorderStyle = BorderStyle.Fixed3D
-        lbUSD.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lbUSD.Location = New Point(0, 111)
-        lbUSD.Name = "lbUSD"
-        lbUSD.Size = New Size(426, 47)
-        lbUSD.TabIndex = 6
-        lbUSD.Text = "0"
-        lbUSD.TextAlign = ContentAlignment.MiddleCenter
-        ' 
-        ' Label3
-        ' 
-        Label3.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label3.Location = New Point(0, 58)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(426, 40)
-        Label3.TabIndex = 5
-        Label3.Text = "USD"
-        Label3.TextAlign = ContentAlignment.TopCenter
         ' 
         ' PrintDialog1
         ' 
@@ -316,6 +234,9 @@ Partial Class sell_point
         ' Panel1
         ' 
         Panel1.BackColor = Color.FromArgb(CByte(0), CByte(192), CByte(192))
+        Panel1.Controls.Add(lbBrand)
+        Panel1.Controls.Add(lbStorage)
+        Panel1.Controls.Add(lbRam)
         Panel1.Controls.Add(txtQuantity)
         Panel1.Controls.Add(lbID)
         Panel1.Controls.Add(btnAddCart)
@@ -325,14 +246,44 @@ Partial Class sell_point
         Panel1.ForeColor = SystemColors.Control
         Panel1.Location = New Point(76, 56)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(225, 359)
+        Panel1.Size = New Size(200, 499)
         Panel1.TabIndex = 2
+        ' 
+        ' lbBrand
+        ' 
+        lbBrand.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold)
+        lbBrand.Location = New Point(0, 286)
+        lbBrand.Name = "lbBrand"
+        lbBrand.Size = New Size(200, 30)
+        lbBrand.TabIndex = 8
+        lbBrand.Text = "Brand:  "
+        lbBrand.TextAlign = ContentAlignment.MiddleLeft
+        ' 
+        ' lbStorage
+        ' 
+        lbStorage.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold)
+        lbStorage.Location = New Point(1, 348)
+        lbStorage.Name = "lbStorage"
+        lbStorage.Size = New Size(200, 30)
+        lbStorage.TabIndex = 7
+        lbStorage.Text = "Storage: "
+        lbStorage.TextAlign = ContentAlignment.MiddleLeft
+        ' 
+        ' lbRam
+        ' 
+        lbRam.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold)
+        lbRam.Location = New Point(1, 318)
+        lbRam.Name = "lbRam"
+        lbRam.Size = New Size(200, 30)
+        lbRam.TabIndex = 6
+        lbRam.Text = "RAM:  "
+        lbRam.TextAlign = ContentAlignment.MiddleLeft
         ' 
         ' txtQuantity
         ' 
         txtQuantity.BackColor = SystemColors.ControlLightLight
         txtQuantity.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        txtQuantity.Location = New Point(79, 251)
+        txtQuantity.Location = New Point(64, 415)
         txtQuantity.Name = "txtQuantity"
         txtQuantity.Size = New Size(63, 23)
         txtQuantity.TabIndex = 5
@@ -350,7 +301,7 @@ Partial Class sell_point
         ' 
         btnAddCart.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
         btnAddCart.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnAddCart.Location = New Point(60, 300)
+        btnAddCart.Location = New Point(40, 453)
         btnAddCart.Name = "btnAddCart"
         btnAddCart.Size = New Size(113, 34)
         btnAddCart.TabIndex = 3
@@ -360,19 +311,19 @@ Partial Class sell_point
         ' lbPrice
         ' 
         lbPrice.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lbPrice.Location = New Point(0, 204)
+        lbPrice.Location = New Point(1, 378)
         lbPrice.Name = "lbPrice"
-        lbPrice.Size = New Size(222, 25)
+        lbPrice.Size = New Size(200, 25)
         lbPrice.TabIndex = 2
-        lbPrice.Text = "$$$"
+        lbPrice.Text = "0"
         lbPrice.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' lbName
         ' 
         lbName.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lbName.Location = New Point(3, 174)
+        lbName.Location = New Point(0, 215)
         lbName.Name = "lbName"
-        lbName.Size = New Size(216, 30)
+        lbName.Size = New Size(200, 30)
         lbName.TabIndex = 1
         lbName.Text = "Product Name"
         lbName.TextAlign = ContentAlignment.MiddleCenter
@@ -382,7 +333,7 @@ Partial Class sell_point
         PictureBox1.Image = My.Resources.Resource1.tmpIMG
         PictureBox1.Location = New Point(0, 0)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(225, 153)
+        PictureBox1.Size = New Size(200, 200)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 0
         PictureBox1.TabStop = False
@@ -391,6 +342,7 @@ Partial Class sell_point
         ' 
         Panel5.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(255))
         Panel5.BorderStyle = BorderStyle.FixedSingle
+        Panel5.Controls.Add(TableLayoutPanel1)
         Panel5.Controls.Add(btnAccept)
         Panel5.Controls.Add(Panel6)
         Panel5.Controls.Add(Panel1)
@@ -468,6 +420,128 @@ Partial Class sell_point
         Panel4.Size = New Size(558, 41)
         Panel4.TabIndex = 3
         ' 
+        ' Label2
+        ' 
+        Label2.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
+        Label2.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.ForeColor = SystemColors.ButtonHighlight
+        Label2.Location = New Point(0, 0)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(426, 45)
+        Label2.TabIndex = 4
+        Label2.Text = "Total Amout"
+        Label2.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label10.Location = New Point(61, 111)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(83, 25)
+        Label10.TabIndex = 11
+        Label10.Text = "Dicount"
+        ' 
+        ' txtDisPercence
+        ' 
+        txtDisPercence.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        txtDisPercence.Location = New Point(150, 111)
+        txtDisPercence.Multiline = True
+        txtDisPercence.Name = "txtDisPercence"
+        txtDisPercence.Size = New Size(135, 25)
+        txtDisPercence.TabIndex = 12
+        txtDisPercence.TextAlign = HorizontalAlignment.Center
+        ' 
+        ' Panel2
+        ' 
+        Panel2.BorderStyle = BorderStyle.Fixed3D
+        Panel2.Controls.Add(lbKHR)
+        Panel2.Controls.Add(Label7)
+        Panel2.Controls.Add(txtExchangeRate)
+        Panel2.Controls.Add(Label5)
+        Panel2.Controls.Add(lbUSD)
+        Panel2.Controls.Add(Label3)
+        Panel2.Controls.Add(cbDisType)
+        Panel2.Controls.Add(txtDisPercence)
+        Panel2.Controls.Add(Label10)
+        Panel2.Controls.Add(Label2)
+        Panel2.Location = New Point(1008, 56)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(428, 500)
+        Panel2.TabIndex = 5
+        ' 
+        ' lbKHR
+        ' 
+        lbKHR.BorderStyle = BorderStyle.Fixed3D
+        lbKHR.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lbKHR.Location = New Point(0, 417)
+        lbKHR.Name = "lbKHR"
+        lbKHR.Size = New Size(426, 47)
+        lbKHR.TabIndex = 19
+        lbKHR.Text = "0"
+        lbKHR.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Label7
+        ' 
+        Label7.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label7.Location = New Point(0, 364)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(426, 40)
+        Label7.TabIndex = 18
+        Label7.Text = "KHR"
+        Label7.TextAlign = ContentAlignment.TopCenter
+        ' 
+        ' txtExchangeRate
+        ' 
+        txtExchangeRate.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        txtExchangeRate.Location = New Point(150, 321)
+        txtExchangeRate.Multiline = True
+        txtExchangeRate.Name = "txtExchangeRate"
+        txtExchangeRate.Size = New Size(190, 31)
+        txtExchangeRate.TabIndex = 17
+        txtExchangeRate.TextAlign = HorizontalAlignment.Center
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label5.Location = New Point(3, 321)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(141, 25)
+        Label5.TabIndex = 16
+        Label5.Text = "Exchange Rate"
+        ' 
+        ' lbUSD
+        ' 
+        lbUSD.BorderStyle = BorderStyle.Fixed3D
+        lbUSD.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lbUSD.Location = New Point(0, 257)
+        lbUSD.Name = "lbUSD"
+        lbUSD.Size = New Size(426, 47)
+        lbUSD.TabIndex = 15
+        lbUSD.Text = "0"
+        lbUSD.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Label3
+        ' 
+        Label3.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label3.Location = New Point(0, 204)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(426, 40)
+        Label3.TabIndex = 14
+        Label3.Text = "USD"
+        Label3.TextAlign = ContentAlignment.TopCenter
+        ' 
+        ' cbDisType
+        ' 
+        cbDisType.DropDownStyle = ComboBoxStyle.DropDownList
+        cbDisType.FormattingEnabled = True
+        cbDisType.Items.AddRange(New Object() {"%", "$", "៛"})
+        cbDisType.Location = New Point(291, 111)
+        cbDisType.Name = "cbDisType"
+        cbDisType.Size = New Size(40, 23)
+        cbDisType.TabIndex = 13
+        ' 
         ' sell_point
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -481,7 +555,6 @@ Partial Class sell_point
         Controls.Add(btnReset)
         Controls.Add(Label1)
         Controls.Add(Panel2)
-        Controls.Add(TableLayoutPanel1)
         Controls.Add(DataGridView1)
         Controls.Add(Panel5)
         FormBorderStyle = FormBorderStyle.FixedDialog
@@ -493,8 +566,6 @@ Partial Class sell_point
         WindowState = FormWindowState.Maximized
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         CType(bsProduct, ComponentModel.ISupportInitialize).EndInit()
-        Panel2.ResumeLayout(False)
-        Panel2.PerformLayout()
         Panel3.ResumeLayout(False)
         Panel3.PerformLayout()
         Panel1.ResumeLayout(False)
@@ -503,6 +574,8 @@ Partial Class sell_point
         Panel5.ResumeLayout(False)
         Panel6.ResumeLayout(False)
         Panel4.ResumeLayout(False)
+        Panel2.ResumeLayout(False)
+        Panel2.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -512,14 +585,6 @@ Partial Class sell_point
     Friend WithEvents Label1 As Label
     Friend WithEvents img As DataGridViewImageColumn
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Panel2 As Panel
-    Friend WithEvents txtExchangeRate As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents lbUSD As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents lbKHR As Label
-    Friend WithEvents Label7 As Label
     Friend WithEvents PrintDialog1 As PrintDialog
     Friend WithEvents Label4 As Label
     Friend WithEvents Panel3 As Panel
@@ -545,4 +610,18 @@ Partial Class sell_point
     Friend WithEvents lbDateInvoice As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Panel4 As Panel
+    Friend WithEvents lbBrand As Label
+    Friend WithEvents lbStorage As Label
+    Friend WithEvents lbRam As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents txtDisPercence As TextBox
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents cbDisType As ComboBox
+    Friend WithEvents lbKHR As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents txtExchangeRate As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents lbUSD As Label
+    Friend WithEvents Label3 As Label
 End Class

@@ -28,11 +28,17 @@ Partial Class Add_Stock_frm
         Label10 = New Label()
         txtSearch = New TextBox()
         Panel1 = New Panel()
+        lbRam = New Label()
+        lbStorage = New Label()
+        lbBrand = New Label()
+        Label14 = New Label()
+        Label1 = New Label()
+        Label13 = New Label()
+        Label15 = New Label()
         lbQuantity = New Label()
         Label11 = New Label()
         lbDate = New Label()
         txtQuantity = New TextBox()
-        lbCatagory = New Label()
         lbPrice = New Label()
         lbName = New Label()
         btnAdd = New Button()
@@ -41,8 +47,6 @@ Partial Class Add_Stock_frm
         Label6 = New Label()
         Label4 = New Label()
         Label3 = New Label()
-        Label2 = New Label()
-        Label1 = New Label()
         Label5 = New Label()
         Label8 = New Label()
         product_image = New DataGridViewImageColumn()
@@ -108,11 +112,17 @@ Partial Class Add_Stock_frm
         ' Panel1
         ' 
         Panel1.BackColor = Color.FromArgb(CByte(255), CByte(192), CByte(255))
+        Panel1.Controls.Add(lbRam)
+        Panel1.Controls.Add(lbStorage)
+        Panel1.Controls.Add(lbBrand)
+        Panel1.Controls.Add(Label14)
+        Panel1.Controls.Add(Label1)
+        Panel1.Controls.Add(Label13)
+        Panel1.Controls.Add(Label15)
         Panel1.Controls.Add(lbQuantity)
         Panel1.Controls.Add(Label11)
         Panel1.Controls.Add(lbDate)
         Panel1.Controls.Add(txtQuantity)
-        Panel1.Controls.Add(lbCatagory)
         Panel1.Controls.Add(lbPrice)
         Panel1.Controls.Add(lbName)
         Panel1.Controls.Add(btnAdd)
@@ -123,20 +133,91 @@ Partial Class Add_Stock_frm
         Panel1.Controls.Add(Label6)
         Panel1.Controls.Add(Label4)
         Panel1.Controls.Add(Label3)
-        Panel1.Controls.Add(Label2)
-        Panel1.Controls.Add(Label1)
         Panel1.Controls.Add(Label5)
         Panel1.Location = New Point(666, 51)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(731, 570)
+        Panel1.Size = New Size(731, 651)
         Panel1.TabIndex = 28
+        ' 
+        ' lbRam
+        ' 
+        lbRam.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
+        lbRam.BorderStyle = BorderStyle.Fixed3D
+        lbRam.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lbRam.Location = New Point(182, 225)
+        lbRam.Name = "lbRam"
+        lbRam.Size = New Size(302, 42)
+        lbRam.TabIndex = 43
+        lbRam.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' lbStorage
+        ' 
+        lbStorage.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
+        lbStorage.BorderStyle = BorderStyle.Fixed3D
+        lbStorage.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lbStorage.Location = New Point(183, 171)
+        lbStorage.Name = "lbStorage"
+        lbStorage.Size = New Size(302, 42)
+        lbStorage.TabIndex = 42
+        lbStorage.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' lbBrand
+        ' 
+        lbBrand.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
+        lbBrand.BorderStyle = BorderStyle.Fixed3D
+        lbBrand.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lbBrand.Location = New Point(183, 119)
+        lbBrand.Name = "lbBrand"
+        lbBrand.Size = New Size(302, 42)
+        lbBrand.TabIndex = 41
+        lbBrand.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Label14
+        ' 
+        Label14.AutoSize = True
+        Label14.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label14.Location = New Point(99, 225)
+        Label14.Name = "Label14"
+        Label14.Size = New Size(79, 34)
+        Label14.TabIndex = 39
+        Label14.Text = "ទំហំរ៉េម"
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Location = New Point(100, 171)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(77, 34)
+        Label1.TabIndex = 37
+        Label1.Text = "ទំហំផ្ទុក"
+        ' 
+        ' Label13
+        ' 
+        Label13.AutoSize = True
+        Label13.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label13.Location = New Point(70, 125)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(110, 34)
+        Label13.TabIndex = 34
+        Label13.Text = "ឈ្មោះប្រេន"
+        ' 
+        ' Label15
+        ' 
+        Label15.AutoSize = True
+        Label15.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label15.Location = New Point(51, 74)
+        Label15.Name = "Label15"
+        Label15.Size = New Size(122, 34)
+        Label15.TabIndex = 31
+        Label15.Text = "ឈ្មោះម៉ូឌែល"
         ' 
         ' lbQuantity
         ' 
         lbQuantity.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
         lbQuantity.BorderStyle = BorderStyle.Fixed3D
         lbQuantity.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lbQuantity.Location = New Point(183, 182)
+        lbQuantity.Location = New Point(181, 278)
         lbQuantity.Name = "lbQuantity"
         lbQuantity.Size = New Size(302, 42)
         lbQuantity.TabIndex = 30
@@ -146,7 +227,7 @@ Partial Class Add_Stock_frm
         ' 
         Label11.AutoSize = True
         Label11.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label11.Location = New Point(32, 182)
+        Label11.Location = New Point(30, 278)
         Label11.Name = "Label11"
         Label11.Size = New Size(148, 34)
         Label11.TabIndex = 29
@@ -157,7 +238,7 @@ Partial Class Add_Stock_frm
         lbDate.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
         lbDate.BorderStyle = BorderStyle.Fixed3D
         lbDate.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lbDate.Location = New Point(182, 344)
+        lbDate.Location = New Point(180, 440)
         lbDate.Name = "lbDate"
         lbDate.Size = New Size(302, 42)
         lbDate.TabIndex = 28
@@ -166,30 +247,19 @@ Partial Class Add_Stock_frm
         ' txtQuantity
         ' 
         txtQuantity.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        txtQuantity.Location = New Point(184, 235)
+        txtQuantity.Location = New Point(182, 331)
         txtQuantity.Multiline = True
         txtQuantity.Name = "txtQuantity"
         txtQuantity.Size = New Size(300, 41)
         txtQuantity.TabIndex = 27
         txtQuantity.TextAlign = HorizontalAlignment.Center
         ' 
-        ' lbCatagory
-        ' 
-        lbCatagory.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
-        lbCatagory.BorderStyle = BorderStyle.Fixed3D
-        lbCatagory.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lbCatagory.Location = New Point(183, 129)
-        lbCatagory.Name = "lbCatagory"
-        lbCatagory.Size = New Size(302, 42)
-        lbCatagory.TabIndex = 26
-        lbCatagory.TextAlign = ContentAlignment.MiddleCenter
-        ' 
         ' lbPrice
         ' 
         lbPrice.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
         lbPrice.BorderStyle = BorderStyle.Fixed3D
         lbPrice.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lbPrice.Location = New Point(183, 290)
+        lbPrice.Location = New Point(181, 386)
         lbPrice.Name = "lbPrice"
         lbPrice.Size = New Size(302, 42)
         lbPrice.TabIndex = 25
@@ -211,7 +281,7 @@ Partial Class Add_Stock_frm
         btnAdd.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
         btnAdd.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnAdd.ForeColor = SystemColors.ButtonHighlight
-        btnAdd.Location = New Point(245, 454)
+        btnAdd.Location = New Point(243, 550)
         btnAdd.Name = "btnAdd"
         btnAdd.Size = New Size(158, 37)
         btnAdd.TabIndex = 23
@@ -233,7 +303,7 @@ Partial Class Add_Stock_frm
         lbTotal.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
         lbTotal.BorderStyle = BorderStyle.Fixed3D
         lbTotal.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lbTotal.Location = New Point(182, 398)
+        lbTotal.Location = New Point(180, 494)
         lbTotal.Name = "lbTotal"
         lbTotal.Size = New Size(302, 42)
         lbTotal.TabIndex = 12
@@ -243,7 +313,7 @@ Partial Class Add_Stock_frm
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label6.Location = New Point(86, 405)
+        Label6.Location = New Point(84, 501)
         Label6.Name = "Label6"
         Label6.Size = New Size(93, 34)
         Label6.TabIndex = 11
@@ -253,7 +323,7 @@ Partial Class Add_Stock_frm
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label4.Location = New Point(122, 296)
+        Label4.Location = New Point(120, 392)
         Label4.Name = "Label4"
         Label4.Size = New Size(51, 34)
         Label4.TabIndex = 7
@@ -263,36 +333,16 @@ Partial Class Add_Stock_frm
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label3.Location = New Point(44, 242)
+        Label3.Location = New Point(42, 338)
         Label3.Name = "Label3"
         Label3.Size = New Size(134, 34)
         Label3.TabIndex = 5
         Label3.Text = "បរិមាណបន្ថែម"
         ' 
-        ' Label2
-        ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(100, 129)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(73, 34)
-        Label2.TabIndex = 3
-        Label2.Text = "ប្រភេទ"
-        ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(25, 72)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(148, 34)
-        Label1.TabIndex = 1
-        Label1.Text = "ឈ្មោះផលិតផល"
-        ' 
         ' Label5
         ' 
         Label5.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(11, 350)
+        Label5.Location = New Point(9, 446)
         Label5.Name = "Label5"
         Label5.Size = New Size(169, 34)
         Label5.TabIndex = 9
@@ -324,6 +374,7 @@ Partial Class Add_Stock_frm
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {product_image})
         DataGridView1.Location = New Point(1, 67)
         DataGridView1.Name = "DataGridView1"
+        DataGridView1.RowHeadersVisible = False
         DataGridView1.Size = New Size(640, 554)
         DataGridView1.TabIndex = 26
         ' 
@@ -331,7 +382,7 @@ Partial Class Add_Stock_frm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1399, 621)
+        ClientSize = New Size(1399, 700)
         Controls.Add(Label9)
         Controls.Add(Button1)
         Controls.Add(txtSearch)
@@ -359,18 +410,22 @@ Partial Class Add_Stock_frm
     Friend WithEvents Label6 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents product_image As DataGridViewImageColumn
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents btnAdd As Button
     Friend WithEvents txtQuantity As TextBox
-    Friend WithEvents lbCatagory As Label
     Friend WithEvents lbPrice As Label
     Friend WithEvents lbName As Label
     Friend WithEvents lbDate As Label
     Friend WithEvents lbQuantity As Label
     Friend WithEvents Label11 As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents lbRam As Label
+    Friend WithEvents lbStorage As Label
+    Friend WithEvents lbBrand As Label
 End Class

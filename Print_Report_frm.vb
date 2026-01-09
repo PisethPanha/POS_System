@@ -29,27 +29,40 @@ Public Class Print_Report_frm
 
     Private Sub Print_Report_frm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        cbReportType.Text = "របាយការណ៍លក់"
         dtpDateFrom.Format = DateTimePickerFormat.Custom
         dtpDateFrom.CustomFormat = "MM/dd/yyyy"
         dtpDateTo.Format = DateTimePickerFormat.Custom
         dtpDateTo.CustomFormat = "MM/dd/yyyy"
-        cbCatagory.Text = "ទាំងអស់"
         lbdate.Text = "កាលបរិច្ឆេទ: " & dtpDateFrom.Text & " - " & dtpDateTo.Text
 
-        Dim query As String = "select * from product_query"
+        Dim adap As New OleDbDataAdapter("select * from brand", conn)
+        Dim dt As New DataTable
+        adap.Fill(dt)
+
+        Dim query As String = "select * from sale_query"
         Dim adapter As New OleDbDataAdapter(query, conn)
         Dim data As New DataTable()
         adapter.Fill(data)
         DataGridView1.DataSource = data
         DataGridView1.AllowUserToAddRows = False
         DataGridView1.ClearSelection()
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         DataGridView1.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Orange
         DataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White
-        DataGridView1.Columns("product_img").Visible = False
         DataGridView1.Height = DataGridView1.ColumnHeadersHeight + DataGridView1.Rows.GetRowsHeight(DataGridViewElementStates.Visible)
-        DataGridView1.Columns("product_name").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        Panel1.Height = DataGridView1.Height + 100
+        'Panel1.Height = DataGridView1.Height + 100
+        Try
+            DataGridView1.Columns("product_img").Visible = False
+            DataGridView1.Columns("model_name").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            DataGridView1.Columns("sup_id").Visible = False
+            DataGridView1.Columns("brand_ID").Visible = False
+            DataGridView1.Columns("storage_id").Visible = False
+            DataGridView1.Columns("ram_size_id").Visible = False
+        Catch ex As Exception
+
+        End Try
 
     End Sub
 
@@ -91,28 +104,20 @@ Public Class Print_Report_frm
         lbReportType.Text = cbReportType.Text
         Dim catagory As String = ""
 
-        If cbCatagory.Text <> "ទាំងអស់" Then
-            catagory = "and catagory = '" & cbCatagory.Text & "'"
-        ElseIf cbCatagory.Text = "ទាំងអស់" Then
-            catagory = ""
-        End If
-
 
         If cbReportType.Text = "របាយការណ៍លក់" Then
-            query = "select * from stock_out 
-                       where out_type = 'sale' 
-                       " & catagory & "
-                       and date_out between #" & date_from.ToString("MM/dd/yyyy") & "# 
+            query = "select * from sale_query where 
+                       sale_date between #" & date_from.ToString("MM/dd/yyyy") & "# 
                        and #" & date_to.ToString("MM/dd/yyyy") & "#"
-        ElseIf cbReportType.Text = "របាយការណ៍ចូលស្តុក" Then
-            query = "select * from stock_in where date_in between #" & date_from.ToString("MM/dd/yyyy") & "# and #" & date_to.ToString("MM/dd/yyyy") & "# 
-                    " & catagory
+        ElseIf cbReportType.Text = "របាយការណ៍ស្តុកចូល" Then
+            query = "select * from stockIn_query where date_in between #" & date_from.ToString("MM/dd/yyyy") & "# and #" & date_to.ToString("MM/dd/yyyy") & "# 
+                    "
         ElseIf cbReportType.Text = "របាយការណ៍ផលិតផលក្នុងស្តុក" Then
             query = "select * from product_query where create_date between #" & date_from.ToString("MM/dd/yyyy") & "# and #" & date_to.ToString("MM/dd/yyyy") & "# 
-                    " & catagory
+                    "
         ElseIf cbReportType.Text = "របាយការណ៍ផលិតផលថ្មី" Then
             query = "select * from new_product where create_date between #" & date_from.ToString("MM/dd/yyyy") & "# and #" & date_to.ToString("MM/dd/yyyy") & "# 
-                    " & catagory
+                    "
         Else
             MessageBox.Show("This Report Not Available")
             Return
@@ -128,10 +133,14 @@ Public Class Print_Report_frm
         DataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Orange
         DataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White
         DataGridView1.Height = DataGridView1.ColumnHeadersHeight + DataGridView1.Rows.GetRowsHeight(DataGridViewElementStates.Visible)
-        DataGridView1.Columns("product_name").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DataGridView1.Columns("model_name").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
 
         Try
             DataGridView1.Columns("product_img").Visible = False
+            DataGridView1.Columns("sup_id").Visible = False
+            DataGridView1.Columns("brand_ID").Visible = False
+            DataGridView1.Columns("storage_id").Visible = False
+            DataGridView1.Columns("ram_size_id").Visible = False
         Catch ex As Exception
 
         End Try
@@ -148,7 +157,7 @@ Public Class Print_Report_frm
         Me.Hide()
     End Sub
 
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
 
     End Sub
 End Class

@@ -36,6 +36,12 @@ Partial Class Dashboard_frm
         Label5 = New Label()
         PictureBox4 = New PictureBox()
         Panel5 = New Panel()
+        Panel7 = New Panel()
+        Label6 = New Label()
+        PictureBox6 = New PictureBox()
+        Panel6 = New Panel()
+        Label3 = New Label()
+        PictureBox5 = New PictureBox()
         Panel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel2.SuspendLayout()
@@ -45,6 +51,10 @@ Partial Class Dashboard_frm
         Panel4.SuspendLayout()
         CType(PictureBox4, ComponentModel.ISupportInitialize).BeginInit()
         Panel5.SuspendLayout()
+        Panel7.SuspendLayout()
+        CType(PictureBox6, ComponentModel.ISupportInitialize).BeginInit()
+        Panel6.SuspendLayout()
+        CType(PictureBox5, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Label1
@@ -181,6 +191,8 @@ Partial Class Dashboard_frm
         ' 
         ' Panel5
         ' 
+        Panel5.Controls.Add(Panel7)
+        Panel5.Controls.Add(Panel6)
         Panel5.Controls.Add(Panel3)
         Panel5.Controls.Add(Panel4)
         Panel5.Controls.Add(Panel2)
@@ -190,6 +202,66 @@ Partial Class Dashboard_frm
         Panel5.Name = "Panel5"
         Panel5.Size = New Size(1168, 809)
         Panel5.TabIndex = 3
+        ' 
+        ' Panel7
+        ' 
+        Panel7.BackColor = Color.Cyan
+        Panel7.Controls.Add(Label6)
+        Panel7.Controls.Add(PictureBox6)
+        Panel7.Location = New Point(679, 450)
+        Panel7.Name = "Panel7"
+        Panel7.Size = New Size(196, 172)
+        Panel7.TabIndex = 4
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Font = New Font("Khmer OS Battambang", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label6.Location = New Point(32, 123)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(139, 29)
+        Label6.TabIndex = 1
+        Label6.Text = "រៀបចំអ្នកគ្រប់គ្រង"
+        ' 
+        ' PictureBox6
+        ' 
+        PictureBox6.Image = My.Resources.Resources.administrator
+        PictureBox6.Location = New Point(31, 11)
+        PictureBox6.Name = "PictureBox6"
+        PictureBox6.Size = New Size(142, 100)
+        PictureBox6.SizeMode = PictureBoxSizeMode.StretchImage
+        PictureBox6.TabIndex = 0
+        PictureBox6.TabStop = False
+        ' 
+        ' Panel6
+        ' 
+        Panel6.BackColor = Color.Cyan
+        Panel6.Controls.Add(Label3)
+        Panel6.Controls.Add(PictureBox5)
+        Panel6.Location = New Point(440, 450)
+        Panel6.Name = "Panel6"
+        Panel6.Size = New Size(196, 172)
+        Panel6.TabIndex = 3
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Khmer OS Battambang", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label3.Location = New Point(60, 114)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(85, 29)
+        Label3.TabIndex = 1
+        Label3.Text = "អ្នកផ្គត់ផ្គង់"
+        ' 
+        ' PictureBox5
+        ' 
+        PictureBox5.Image = My.Resources.Resources.supplier
+        PictureBox5.Location = New Point(31, 11)
+        PictureBox5.Name = "PictureBox5"
+        PictureBox5.Size = New Size(142, 100)
+        PictureBox5.SizeMode = PictureBoxSizeMode.StretchImage
+        PictureBox5.TabIndex = 0
+        PictureBox5.TabStop = False
         ' 
         ' Dashboard_frm
         ' 
@@ -214,6 +286,12 @@ Partial Class Dashboard_frm
         Panel4.PerformLayout()
         CType(PictureBox4, ComponentModel.ISupportInitialize).EndInit()
         Panel5.ResumeLayout(False)
+        Panel7.ResumeLayout(False)
+        Panel7.PerformLayout()
+        CType(PictureBox6, ComponentModel.ISupportInitialize).EndInit()
+        Panel6.ResumeLayout(False)
+        Panel6.PerformLayout()
+        CType(PictureBox5, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -231,4 +309,10 @@ Partial Class Dashboard_frm
     Friend WithEvents Label5 As Label
     Friend WithEvents PictureBox4 As PictureBox
     Friend WithEvents Panel5 As Panel
+    Friend WithEvents Panel6 As Panel
+    Friend WithEvents Label3 As Label
+    Friend WithEvents PictureBox5 As PictureBox
+    Friend WithEvents Panel7 As Panel
+    Friend WithEvents Label6 As Label
+    Friend WithEvents PictureBox6 As PictureBox
 End Class

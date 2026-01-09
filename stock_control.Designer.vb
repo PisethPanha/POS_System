@@ -24,23 +24,23 @@ Partial Class stock_control
     Private Sub InitializeComponent()
         DataGridView1 = New DataGridView()
         product_image = New DataGridViewImageColumn()
-        Label1 = New Label()
         Label2 = New Label()
         Label3 = New Label()
         Label4 = New Label()
         Label5 = New Label()
-        Label6 = New Label()
-        lbTotal = New Label()
         pbImg = New PictureBox()
         Label8 = New Label()
         Panel1 = New Panel()
-        txtCatagory = New Label()
-        Panel3 = New Panel()
-        txtModel = New ComboBox()
+        pan = New Panel()
+        cbSuplier = New ComboBox()
+        Panel2 = New Panel()
+        cbStorage = New ComboBox()
+        cbRam = New ComboBox()
+        cbBrand = New ComboBox()
+        txtModel = New TextBox()
+        Label14 = New Label()
         Label15 = New Label()
-        lbBran = New Label()
         Label13 = New Label()
-        txtSuplier = New TextBox()
         Label11 = New Label()
         lbDate = New Label()
         txtQuantity = New Label()
@@ -54,7 +54,6 @@ Partial Class stock_control
         btnUpdate = New Button()
         btnDel = New Button()
         txtPrice = New TextBox()
-        txtName = New TextBox()
         Button1 = New Button()
         txtSearch = New TextBox()
         Label9 = New Label()
@@ -62,7 +61,8 @@ Partial Class stock_control
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         CType(pbImg, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
-        Panel3.SuspendLayout()
+        pan.SuspendLayout()
+        Panel2.SuspendLayout()
         TableLayoutPanel1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -72,9 +72,12 @@ Partial Class stock_control
         DataGridView1.BorderStyle = BorderStyle.None
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {product_image})
-        DataGridView1.Location = New Point(2, 68)
+        DataGridView1.Dock = DockStyle.Bottom
+        DataGridView1.Location = New Point(0, 58)
+        DataGridView1.MaximumSize = New Size(640, 643)
         DataGridView1.Name = "DataGridView1"
-        DataGridView1.Size = New Size(640, 643)
+        DataGridView1.RowHeadersVisible = False
+        DataGridView1.Size = New Size(640, 592)
         DataGridView1.TabIndex = 0
         ' 
         ' product_image
@@ -83,31 +86,21 @@ Partial Class stock_control
         product_image.ImageLayout = DataGridViewImageCellLayout.Stretch
         product_image.Name = "product_image"
         ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(25, 72)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(148, 34)
-        Label1.TabIndex = 1
-        Label1.Text = "ឈ្មោះផលិតផល"
-        ' 
         ' Label2
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(100, 224)
+        Label2.Location = New Point(101, 170)
         Label2.Name = "Label2"
-        Label2.Size = New Size(73, 34)
+        Label2.Size = New Size(77, 34)
         Label2.TabIndex = 3
-        Label2.Text = "ប្រភេទ"
+        Label2.Text = "ទំហំផ្ទុក"
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label3.Location = New Point(89, 280)
+        Label3.Location = New Point(88, 280)
         Label3.Name = "Label3"
         Label3.Size = New Size(84, 34)
         Label3.TabIndex = 5
@@ -117,7 +110,7 @@ Partial Class stock_control
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label4.Location = New Point(122, 330)
+        Label4.Location = New Point(121, 330)
         Label4.Name = "Label4"
         Label4.Size = New Size(51, 34)
         Label4.TabIndex = 7
@@ -126,32 +119,11 @@ Partial Class stock_control
         ' Label5
         ' 
         Label5.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(11, 384)
+        Label5.Location = New Point(10, 384)
         Label5.Name = "Label5"
-        Label5.Size = New Size(169, 34)
+        Label5.Size = New Size(169, 48)
         Label5.TabIndex = 9
         Label5.Text = "កាលបរិច្ឆេទបញ្ចូល"
-        ' 
-        ' Label6
-        ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label6.Location = New Point(86, 439)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(93, 34)
-        Label6.TabIndex = 11
-        Label6.Text = "តម្លៃសរុប"
-        ' 
-        ' lbTotal
-        ' 
-        lbTotal.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
-        lbTotal.BorderStyle = BorderStyle.Fixed3D
-        lbTotal.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lbTotal.Location = New Point(182, 432)
-        lbTotal.Name = "lbTotal"
-        lbTotal.Size = New Size(302, 42)
-        lbTotal.TabIndex = 12
-        lbTotal.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' pbImg
         ' 
@@ -177,12 +149,14 @@ Partial Class stock_control
         ' Panel1
         ' 
         Panel1.BackColor = Color.FromArgb(CByte(255), CByte(192), CByte(255))
-        Panel1.Controls.Add(txtCatagory)
-        Panel1.Controls.Add(Panel3)
+        Panel1.Controls.Add(pan)
+        Panel1.Controls.Add(Panel2)
+        Panel1.Controls.Add(cbRam)
+        Panel1.Controls.Add(cbBrand)
+        Panel1.Controls.Add(txtModel)
+        Panel1.Controls.Add(Label14)
         Panel1.Controls.Add(Label15)
-        Panel1.Controls.Add(lbBran)
         Panel1.Controls.Add(Label13)
-        Panel1.Controls.Add(txtSuplier)
         Panel1.Controls.Add(Label11)
         Panel1.Controls.Add(lbDate)
         Panel1.Controls.Add(txtQuantity)
@@ -192,97 +166,119 @@ Partial Class stock_control
         Panel1.Controls.Add(Label7)
         Panel1.Controls.Add(TableLayoutPanel1)
         Panel1.Controls.Add(pbImg)
-        Panel1.Controls.Add(lbTotal)
-        Panel1.Controls.Add(Label6)
         Panel1.Controls.Add(txtPrice)
         Panel1.Controls.Add(Label4)
         Panel1.Controls.Add(Label3)
         Panel1.Controls.Add(Label2)
-        Panel1.Controls.Add(txtName)
-        Panel1.Controls.Add(Label1)
         Panel1.Controls.Add(Label5)
         Panel1.Location = New Point(667, 49)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(731, 662)
+        Panel1.Size = New Size(722, 662)
         Panel1.TabIndex = 15
         ' 
-        ' txtCatagory
+        ' pan
         ' 
-        txtCatagory.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
-        txtCatagory.BorderStyle = BorderStyle.Fixed3D
-        txtCatagory.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        txtCatagory.Location = New Point(183, 218)
-        txtCatagory.Name = "txtCatagory"
-        txtCatagory.Size = New Size(302, 44)
-        txtCatagory.TabIndex = 29
-        txtCatagory.TextAlign = ContentAlignment.MiddleCenter
+        pan.Controls.Add(cbSuplier)
+        pan.Location = New Point(183, 436)
+        pan.Name = "pan"
+        pan.Size = New Size(300, 41)
+        pan.TabIndex = 37
         ' 
-        ' Panel3
+        ' cbSuplier
         ' 
-        Panel3.Controls.Add(txtModel)
-        Panel3.Location = New Point(182, 122)
-        Panel3.Name = "Panel3"
-        Panel3.Size = New Size(300, 34)
-        Panel3.TabIndex = 26
+        cbSuplier.Dock = DockStyle.Fill
+        cbSuplier.DropDownStyle = ComboBoxStyle.DropDownList
+        cbSuplier.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        cbSuplier.FormattingEnabled = True
+        cbSuplier.Location = New Point(0, 0)
+        cbSuplier.Name = "cbSuplier"
+        cbSuplier.Size = New Size(300, 29)
+        cbSuplier.TabIndex = 34
+        ' 
+        ' Panel2
+        ' 
+        Panel2.Controls.Add(cbStorage)
+        Panel2.Location = New Point(186, 170)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(300, 41)
+        Panel2.TabIndex = 36
+        ' 
+        ' cbStorage
+        ' 
+        cbStorage.Dock = DockStyle.Fill
+        cbStorage.DropDownStyle = ComboBoxStyle.DropDownList
+        cbStorage.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        cbStorage.FormattingEnabled = True
+        cbStorage.Location = New Point(0, 0)
+        cbStorage.Name = "cbStorage"
+        cbStorage.Size = New Size(300, 29)
+        cbStorage.TabIndex = 34
+        ' 
+        ' cbRam
+        ' 
+        cbRam.DropDownStyle = ComboBoxStyle.DropDownList
+        cbRam.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        cbRam.FormattingEnabled = True
+        cbRam.Location = New Point(186, 228)
+        cbRam.Name = "cbRam"
+        cbRam.Size = New Size(296, 29)
+        cbRam.TabIndex = 35
+        ' 
+        ' cbBrand
+        ' 
+        cbBrand.DropDownStyle = ComboBoxStyle.DropDownList
+        cbBrand.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        cbBrand.FormattingEnabled = True
+        cbBrand.Location = New Point(184, 121)
+        cbBrand.Name = "cbBrand"
+        cbBrand.Size = New Size(296, 29)
+        cbBrand.TabIndex = 33
         ' 
         ' txtModel
         ' 
-        txtModel.DisplayMember = "ជ្រើសរើស"
-        txtModel.Dock = DockStyle.Fill
-        txtModel.Font = New Font("Khmer OS Battambang", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        txtModel.FormattingEnabled = True
-        txtModel.Items.AddRange(New Object() {"ទាំងអស់", "laptop", "desktop", "camera", "phone", "PC accessory", "PC compnent", "PC all-in-one", "office accessory", "program"})
-        txtModel.Location = New Point(0, 0)
+        txtModel.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        txtModel.Location = New Point(184, 62)
+        txtModel.Multiline = True
         txtModel.Name = "txtModel"
-        txtModel.Size = New Size(300, 30)
-        txtModel.TabIndex = 23
+        txtModel.Size = New Size(300, 41)
+        txtModel.TabIndex = 32
+        txtModel.TextAlign = HorizontalAlignment.Center
+        ' 
+        ' Label14
+        ' 
+        Label14.AutoSize = True
+        Label14.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label14.Location = New Point(101, 220)
+        Label14.Name = "Label14"
+        Label14.Size = New Size(79, 34)
+        Label14.TabIndex = 30
+        Label14.Text = "ទំហំរ៉េម"
         ' 
         ' Label15
         ' 
         Label15.AutoSize = True
         Label15.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label15.Location = New Point(98, 122)
+        Label15.Location = New Point(56, 69)
         Label15.Name = "Label15"
-        Label15.Size = New Size(71, 34)
+        Label15.Size = New Size(122, 34)
         Label15.TabIndex = 25
-        Label15.Text = "ម៉ូដែល"
-        ' 
-        ' lbBran
-        ' 
-        lbBran.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
-        lbBran.BorderStyle = BorderStyle.Fixed3D
-        lbBran.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lbBran.Location = New Point(183, 165)
-        lbBran.Name = "lbBran"
-        lbBran.Size = New Size(302, 44)
-        lbBran.TabIndex = 28
-        lbBran.TextAlign = ContentAlignment.MiddleCenter
+        Label15.Text = "ឈ្មោះម៉ូឌែល"
         ' 
         ' Label13
         ' 
         Label13.AutoSize = True
         Label13.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label13.Location = New Point(70, 175)
+        Label13.Location = New Point(71, 121)
         Label13.Name = "Label13"
         Label13.Size = New Size(110, 34)
         Label13.TabIndex = 25
         Label13.Text = "ឈ្មោះប្រេន"
         ' 
-        ' txtSuplier
-        ' 
-        txtSuplier.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        txtSuplier.Location = New Point(183, 485)
-        txtSuplier.Multiline = True
-        txtSuplier.Name = "txtSuplier"
-        txtSuplier.Size = New Size(300, 41)
-        txtSuplier.TabIndex = 27
-        txtSuplier.TextAlign = HorizontalAlignment.Center
-        ' 
         ' Label11
         ' 
         Label11.AutoSize = True
         Label11.Font = New Font("Khmer OS Battambang", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label11.Location = New Point(81, 492)
+        Label11.Location = New Point(79, 443)
         Label11.Name = "Label11"
         Label11.Size = New Size(99, 34)
         Label11.TabIndex = 26
@@ -293,7 +289,7 @@ Partial Class stock_control
         lbDate.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
         lbDate.BorderStyle = BorderStyle.Fixed3D
         lbDate.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lbDate.Location = New Point(182, 378)
+        lbDate.Location = New Point(181, 378)
         lbDate.Name = "lbDate"
         lbDate.Size = New Size(302, 42)
         lbDate.TabIndex = 25
@@ -304,7 +300,7 @@ Partial Class stock_control
         txtQuantity.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
         txtQuantity.BorderStyle = BorderStyle.Fixed3D
         txtQuantity.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        txtQuantity.Location = New Point(182, 274)
+        txtQuantity.Location = New Point(181, 274)
         txtQuantity.Name = "txtQuantity"
         txtQuantity.Size = New Size(302, 42)
         txtQuantity.TabIndex = 22
@@ -348,7 +344,7 @@ Partial Class stock_control
         Label7.BackColor = Color.FromArgb(CByte(64), CByte(0), CByte(64))
         Label7.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label7.ForeColor = SystemColors.ButtonHighlight
-        Label7.Location = New Point(86, 536)
+        Label7.Location = New Point(84, 487)
         Label7.Name = "Label7"
         Label7.Size = New Size(482, 37)
         Label7.TabIndex = 19
@@ -366,7 +362,7 @@ Partial Class stock_control
         TableLayoutPanel1.Controls.Add(btnNew, 3, 0)
         TableLayoutPanel1.Controls.Add(btnUpdate, 1, 0)
         TableLayoutPanel1.Controls.Add(btnDel, 2, 0)
-        TableLayoutPanel1.Location = New Point(86, 571)
+        TableLayoutPanel1.Location = New Point(84, 522)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 1
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
@@ -425,22 +421,12 @@ Partial Class stock_control
         ' txtPrice
         ' 
         txtPrice.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        txtPrice.Location = New Point(183, 325)
+        txtPrice.Location = New Point(182, 325)
         txtPrice.Multiline = True
         txtPrice.Name = "txtPrice"
         txtPrice.Size = New Size(300, 41)
         txtPrice.TabIndex = 8
         txtPrice.TextAlign = HorizontalAlignment.Center
-        ' 
-        ' txtName
-        ' 
-        txtName.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        txtName.Location = New Point(183, 69)
-        txtName.Multiline = True
-        txtName.Name = "txtName"
-        txtName.Size = New Size(300, 41)
-        txtName.TabIndex = 2
-        txtName.TextAlign = HorizontalAlignment.Center
         ' 
         ' Button1
         ' 
@@ -491,7 +477,7 @@ Partial Class stock_control
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1370, 709)
+        ClientSize = New Size(1384, 650)
         Controls.Add(Label12)
         Controls.Add(txtSearch)
         Controls.Add(Label9)
@@ -499,27 +485,25 @@ Partial Class stock_control
         Controls.Add(Panel1)
         Controls.Add(Label8)
         Controls.Add(DataGridView1)
+        MaximumSize = New Size(1400, 689)
         Name = "stock_control"
         Text = "stock_control"
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         CType(pbImg, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
-        Panel3.ResumeLayout(False)
+        pan.ResumeLayout(False)
+        Panel2.ResumeLayout(False)
         TableLayoutPanel1.ResumeLayout(False)
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents product_image As DataGridViewImageColumn
-    Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents lbTotal As Label
     Friend WithEvents pbImg As PictureBox
     Friend WithEvents Label8 As Label
     Friend WithEvents Panel1 As Panel
@@ -536,16 +520,19 @@ Partial Class stock_control
     Friend WithEvents Button1 As Button
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents Label9 As Label
-    Friend WithEvents lbDate As Label
     Friend WithEvents txtPrice As TextBox
-    Friend WithEvents txtSuplier As TextBox
     Friend WithEvents Label11 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents Label13 As Label
-    Friend WithEvents lbBran As Label
-    Friend WithEvents txtCatagory As Label
-    Friend WithEvents Panel3 As Panel
-    Friend WithEvents txtModel As ComboBox
     Friend WithEvents Label15 As Label
-    Friend WithEvents txtName As TextBox
+    Friend WithEvents txtModel As TextBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents cbRam As ComboBox
+    Friend WithEvents cbStorage As ComboBox
+    Friend WithEvents cbBrand As ComboBox
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents product_image As DataGridViewImageColumn
+    Friend WithEvents pan As Panel
+    Friend WithEvents cbSuplier As ComboBox
+    Friend WithEvents lbDate As Label
 End Class

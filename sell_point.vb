@@ -17,6 +17,9 @@ Public Class sell_point
     Private RowIndexTB As Integer = 0
     Private pro_id As Integer
     Private bmp As Bitmap
+    Private disprice As Decimal
+    Private dispricePercence As Decimal
+
     Private conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & IO.Directory.GetParent(Application.StartupPath).Parent.FullName.Substring(0, IO.Directory.GetParent(Application.StartupPath).Parent.FullName.Length - 9) & "\" & "admin.accdb;")
 
     Public Class cardList
@@ -24,38 +27,35 @@ Public Class sell_point
         Public Property price As Decimal = -1
         Public Property quantity As Decimal
         Public Property name As String
-        Public Property catagory As String
         Public Property index As Integer
 
-        Public Sub New(id As Integer, price As Decimal, quantity As Decimal, name As String, index As Integer, catagory As String)
+        Public Sub New(id As Integer, price As Decimal, quantity As Decimal, name As String, index As Integer)
             Me.id = id
             Me.price = price
             Me.quantity = quantity
             Me.name = name
             Me.index = index
-            Me.catagory = catagory
+
         End Sub
     End Class
     Public Class items
         Public product_name As String
-        Public catagory As String
         Public price As Decimal
         Public quantity As Decimal
         Public id As Integer
         Public index As Integer
-        Public Sub New(price As Decimal, quantity As Integer, Name As String, index As Integer, id As Integer, catagory As String)
+        Public Sub New(price As Decimal, quantity As Integer, Name As String, index As Integer, id As Integer)
             Me.product_name = Name
             Me.price = price
             Me.id = id
             Me.quantity = quantity
             Me.index = index
-            Me.catagory = catagory
+
         End Sub
     End Class
 
     Public Function loadData()
-        Dim query As String =
-       "SELECT * FROM product_query"
+        Dim query As String = "select * from product_query"
 
         Dim adapter As New OleDbDataAdapter(query, conn)
         Dim data As New DataTable()
@@ -97,15 +97,10 @@ Public Class sell_point
 
     Private Sub sell_point_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        lbName.Text = "Product Name"
-
-        lbPrice.Text = "0"
         txtExchangeRate.Text = 4000
-        Me.MinimumSize = Me.Size
-        Me.MaximumSize = Me.Size
+        cbDisType.Text = "%"
 
-        Dim query As String =
-        "SELECT * FROM product_query"
+        Dim query As String = "select * from product_query"
 
         Dim adapter As New OleDbDataAdapter(query, conn)
         Dim data As New DataTable()
@@ -225,11 +220,13 @@ Public Class sell_point
         If e.RowIndex >= 0 Then
             Dim img As Image = DataGridView1.Rows(e.RowIndex).Cells("img").Value
             PictureBox1.Image = img
+            lbBrand.Text = "Brand: " & DataGridView1.Rows(e.RowIndex).Cells("brand_name").Value
+            lbRam.Text = "RAM: " & DataGridView1.Rows(e.RowIndex).Cells("Ram_size").Value
+            lbStorage.Text = "Storage: " & DataGridView1.Rows(e.RowIndex).Cells("storage_size").Value
             lbPrice.Text = DataGridView1.Rows(e.RowIndex).Cells("price").Value & "$"
-            lbName.Text = DataGridView1.Rows(e.RowIndex).Cells("product_name").Value
+            lbName.Text = DataGridView1.Rows(e.RowIndex).Cells("model_name").Value
             pro_id = e.RowIndex
             txtQuantity.Text = 1
-
             proID = DataGridView1.Rows(e.RowIndex).Cells("ID").Value
 
 
@@ -246,16 +243,19 @@ Public Class sell_point
     Private Sub btnAddCart_Click(sender As Object, e As EventArgs) Handles btnAddCart.Click
 
 
-        If lbPrice.Text <> "$$$" Or lbPrice.Text <> "???" Then
+        If lbPrice.Text <> "0" Then
             Try
-                Dim name As String = DataGridView1.Rows(pro_id).Cells("product_name").Value
-                Dim catagory As String = DataGridView1.Rows(pro_id).Cells("catagory").Value
+                Dim name As String = DataGridView1.Rows(pro_id).Cells("model_name").Value
+                Dim brand As String = DataGridView1.Rows(pro_id).Cells("brand_name").Value
+                Dim storage As String = DataGridView1.Rows(pro_id).Cells("storage_size").Value
+                Dim ram As String = DataGridView1.Rows(pro_id).Cells("ram_size").Value
+                Dim r As String = DataGridView1.Rows(pro_id).Cells("ram_size").Value
                 Dim price As String = DataGridView1.Rows(pro_id).Cells("price").Value * txtQuantity.Text
                 Dim img As Image = DataGridView1.Rows(pro_id).Cells("img").Value
                 Dim quantity As Integer = Val(txtQuantity.Text)
                 RowIndexTB += 1
                 Dim index As Integer = RowIndexTB
-                proList.Add(New cardList(proID, price, quantity, name, RowIndexTB, catagory))
+                proList.Add(New cardList(proID, price, quantity, name, RowIndexTB))
 
                 If quantity > 0 Then
                     AddProductCard(name, price, quantity, RowIndexTB, img)
@@ -263,11 +263,32 @@ Public Class sell_point
                     MessageBox.Show("please input quatity value")
                 End If
 
+                If txtDisPercence.Text <> "" Then
+                    If cbDisType.Text = "%" Then
+                        disprice = proList.Sum(Function(x) x.price) * (txtDisPercence.Text / 100)
+                        dispricePercence = txtDisPercence.Text
+                    ElseIf cbDisType.Text = "$" Then
+                        disprice = txtDisPercence.Text
+                        dispricePercence = (txtDisPercence.Text / proList.Sum(Function(x) x.price)) * 100
+                    ElseIf cbDisType.Text = "៛" Then
+                        disprice = txtDisPercence.Text / txtExchangeRate.Text
+                        dispricePercence = ((txtDisPercence.Text / txtExchangeRate.Text) / proList.Sum(Function(x) x.price)) * 100
+                    End If
+                Else
 
-                total_amount = proList.Sum(Function(x) x.price)
+                    disprice = 0
+                End If
 
-                lbUSD.Text = total_amount.ToString("C")
-                lbKHR.Text = "៛" & (total_amount * Val(txtExchangeRate.Text)).ToString("N0")
+
+                If proList.Count <> 0 Then
+                    total_amount = proList.Sum(Function(x) x.price) - disprice
+
+                    lbUSD.Text = total_amount.ToString("C")
+                    lbKHR.Text = "៛" & (total_amount * Val(txtExchangeRate.Text)).ToString("N0")
+                Else
+                    lbUSD.Text = 0
+                    lbKHR.Text = 0
+                End If
             Catch ex As Exception
                 MessageBox.Show("please select product ")
             End Try
@@ -287,7 +308,7 @@ Public Class sell_point
 
     End Sub
 
-    Private Sub txtExchangeRate_TextChanged(sender As Object, e As EventArgs) Handles txtExchangeRate.TextChanged
+    Private Sub txtExchangeRate_TextChanged(sender As Object, e As EventArgs)
         If txtExchangeRate.Text = "" Then
             Return
         End If
@@ -327,34 +348,24 @@ Public Class sell_point
     End Sub
 
     Private Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
-        PictureBox1.Image = Resource1.tmpIMG
-
-        lbPrice.Text = "???"
-        lbName.Text = "???"
-        merge.Clear()
-        proList.Clear()
-        pro_id = -1
-        For i = TableLayoutPanel1.Controls.Count - 1 To 0 Step -1
-            TableLayoutPanel1.Controls(i).Dispose()
-        Next
-        lbKHR.Text = "៛៛៛"
-        lbUSD.Text = 0
-
-        regenerateIvoice()
+        reset()
     End Sub
 
     Public Function reset()
         PictureBox1.Image = Resource1.tmpIMG
 
-        lbPrice.Text = "???"
-        lbName.Text = "???"
+        lbPrice.Text = "0"
+        lbName.Text = "Product Name"
+        lbBrand.Text = "Brand: "
+        lbRam.Text = "RAM: "
+        lbStorage.Text = "Storage: "
         merge.Clear()
         proList.Clear()
         pro_id = -1
         For i = TableLayoutPanel1.Controls.Count - 1 To 0 Step -1
             TableLayoutPanel1.Controls(i).Dispose()
         Next
-        lbKHR.Text = "៛៛៛"
+        lbKHR.Text = 0
         lbUSD.Text = 0
 
         regenerateIvoice()
@@ -370,42 +381,56 @@ Public Class sell_point
         TableLayoutPanel2.RowCount = 0
         TableLayoutPanel2.ResumeLayout()
 
-        For Each it In proList
-            Dim existedItem = merge.FirstOrDefault(Function(x) x.id = it.id)
-            If existedItem IsNot Nothing Then
-                existedItem.quantity += it.quantity
-                existedItem.price += it.price
-            Else
-                merge.Add(New items(it.price, it.quantity, it.name, it.index, it.id, it.catagory))
-            End If
-        Next
-        total_quantity = 0
-        For Each q In merge
-            total_quantity += q.quantity
-        Next
+        If proList.Count <> 0 Then
+            For Each it In proList
+                Dim existedItem = merge.FirstOrDefault(Function(x) x.id = it.id)
+                If existedItem IsNot Nothing Then
+                    existedItem.quantity += it.quantity
+                    existedItem.price += it.price
+                Else
+                    merge.Add(New items(it.price, it.quantity, it.name, it.index, it.id))
+                End If
+            Next
+            total_quantity = 0
+            For Each q In merge
+                total_quantity += q.quantity
+            Next
 
-        For i As Integer = 0 To merge.Count - 1
-            Dim ite As items = merge(i)
-            Dim lbItem As New Label()
-            Dim name As String = ite.product_name
-            Dim quantity2 As Decimal = ite.quantity
-            Dim totalPrice As Decimal = ite.price
-            Dim pricePerUnit As Decimal = ite.price / ite.quantity
-            txtQuantity.Text = 1
+            For i As Integer = 0 To merge.Count - 1
+                Dim ite As items = merge(i)
+                Dim lbItem As New Label()
+                Dim name As String = ite.product_name
+                Dim quantity2 As Decimal = ite.quantity
+                Dim totalPrice As Decimal = ite.price
+                Dim pricePerUnit As Decimal = ite.price / ite.quantity
+                txtQuantity.Text = 1
 
-            lbItem.Text = name & "     " & pricePerUnit.ToString("N0") & "$" & "         x" & quantity2 & "        = " & totalPrice.ToString("N0") & "$"
-            lbItem.AutoSize = False
-            lbItem.Font = New Font("Segoe UI", 13, FontStyle.Bold)
-            lbItem.Dock = DockStyle.Top
-            lbItem.TextAlign = ContentAlignment.MiddleLeft
-            lbItem.Height = 50
-            TableLayoutPanel2.RowCount += 2
-            TableLayoutPanel2.Controls.Add(lbItem)
-        Next
-        lbTotalQuantity.Text = "Total quantity: " & total_quantity
-        lbFee.Text = "Fee: 0$"
-        lbDateInvoice.Text = Date.Now.ToString
-        lbTotal.Text = "Total: " & merge.Sum(Function(x) x.price).ToString("N0") & "$ / " & (merge.Sum(Function(x) x.price) * txtExchangeRate.Text).ToString("N0") & "៛"
+                lbItem.Text = name & "     " & pricePerUnit.ToString("N0") & "$" & "         x" & quantity2 & "        = " & totalPrice.ToString("N0") & "$"
+                lbItem.AutoSize = False
+                lbItem.Font = New Font("Segoe UI", 9, FontStyle.Bold)
+                lbItem.Dock = DockStyle.Top
+                lbItem.TextAlign = ContentAlignment.MiddleLeft
+                lbItem.Height = 50
+                TableLayoutPanel2.RowCount += 2
+                TableLayoutPanel2.Controls.Add(lbItem)
+            Next
+        End If
+
+        If proList.Count <> 0 Then
+            lbTotalQuantity.Text = "Total quantity: " & total_quantity
+            lbFee.Text = "Discount: " & disprice.ToString("N2") & "$"
+            lbUSD.Text = (merge.Sum(Function(x) x.price) - disprice).ToString("N2") & "$"
+            lbKHR.Text = (lbUSD.Text * txtExchangeRate.Text).ToString("N0") & "៛"
+            lbDateInvoice.Text = Date.Now.ToString
+            lbTotal.Text = "Total: " & (merge.Sum(Function(x) x.price) - disprice).ToString("N2") & "$ / " & ((merge.Sum(Function(x) x.price) * txtExchangeRate.Text - (disprice * txtExchangeRate.Text))).ToString("N0") & "៛"
+        Else
+            lbTotalQuantity.Text = "Total quantity: 0"
+            lbFee.Text = "Discount: 0$"
+            lbUSD.Text = 0
+            lbKHR.Text = 0
+            lbTotal.Text = "Total: 0$"
+        End If
+
     End Sub
 
     Private Sub Button1_MouseEnter(sender As Object, e As EventArgs) Handles btnAccept.MouseEnter
@@ -418,36 +443,18 @@ Public Class sell_point
     Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click
         PrintPanel()
 
-        'Dim sb As New StringBuilder()
-
-        'For Each i In merge
-        '    sb.AppendLine("product id: " & i.id)
-        '    sb.AppendLine("product name: " & i.product_name)
-        '    sb.AppendLine("product quantity: " & i.quantity)
-        '    sb.AppendLine("")
-        '    sb.AppendLine("")
-        '    sb.AppendLine("-------------------------------")
-
-        'Next
-
-        'MessageBox.Show(sb.ToString)
 
         For Each it In merge
-            Dim query1 As String = "insert into stock_out (product_id, product_name,catagory, quantity_out, out_type, date_out) values (?,?,?,?,?,?)"
-            Dim query2 As String = "update product set quantity = quantity - " & it.quantity & " where ID = ?"
+            Dim query1 As String = "insert into sale_tbl (product_id, quantity_out, discount, total_amount, sale_date) values (?,?,?,?,?)"
             Dim cmd1 As New OleDbCommand(query1, conn)
             conn.Open()
             cmd1.Parameters.AddWithValue("?", it.id)
-            cmd1.Parameters.AddWithValue("?", it.product_name)
-            cmd1.Parameters.AddWithValue("?", it.catagory)
             cmd1.Parameters.AddWithValue("?", it.quantity)
-            cmd1.Parameters.AddWithValue("?", "sale")
+            cmd1.Parameters.AddWithValue("?", dispricePercence)
+            cmd1.Parameters.AddWithValue("?", (it.price - (it.price * (dispricePercence / 100))))
             cmd1.Parameters.AddWithValue("?", Date.Today.ToString("MM/dd/yyyy"))
             cmd1.ExecuteNonQuery()
 
-            Dim cmd2 As New OleDbCommand(query2, conn)
-            cmd2.Parameters.AddWithValue("?", it.id)
-            cmd2.ExecuteNonQuery()
             conn.Close()
         Next
         reset()
@@ -532,5 +539,82 @@ Public Class sell_point
 
     Private Sub txtQuantity_TextChanged(sender As Object, e As EventArgs) Handles txtQuantity.TextChanged
 
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
+    End Sub
+
+    Private Sub lbPrice_Click(sender As Object, e As EventArgs) Handles lbPrice.Click
+
+    End Sub
+
+    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles txtDisPercence.TextChanged
+
+        Try
+            Dim disVal As Decimal = txtDisPercence.Text
+        Catch ex As Exception
+            If txtDisPercence.Text <> "" Then
+                MessageBox.Show("discount value must be a number")
+                txtDisPercence.Text = txtDisPercence.Text.Substring(0, txtDisPercence.Text.Length - 1)
+            End If
+        End Try
+
+
+        If txtDisPercence.Text <> "" Then
+            If cbDisType.Text = "%" Then
+                disprice = proList.Sum(Function(x) x.price) * (txtDisPercence.Text / 100)
+                dispricePercence = txtDisPercence.Text
+            ElseIf cbDisType.Text = "$" Then
+                disprice = txtDisPercence.Text
+                dispricePercence = (txtDisPercence.Text / proList.Sum(Function(x) x.price)) * 100
+            ElseIf cbDisType.Text = "៛" Then
+                disprice = txtDisPercence.Text / txtExchangeRate.Text
+                dispricePercence = ((txtDisPercence.Text / txtExchangeRate.Text) / proList.Sum(Function(x) x.price)) * 100
+            End If
+        Else
+            disprice = 0
+        End If
+        total_amount = proList.Sum(Function(x) x.price) - disprice
+
+        lbUSD.Text = total_amount.ToString("C")
+        lbKHR.Text = "៛" & (total_amount * Val(txtExchangeRate.Text)).ToString("N0")
+        regenerateIvoice()
+    End Sub
+
+
+    Private Sub Label10_Click(sender As Object, e As EventArgs) Handles Label10.Click
+
+    End Sub
+
+    Private Sub cbDisType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbDisType.SelectedIndexChanged
+
+        Try
+            If txtDisPercence.Text <> "" Then
+                If cbDisType.Text = "%" Then
+                    disprice = proList.Sum(Function(x) x.price) * (txtDisPercence.Text / 100)
+                    dispricePercence = txtDisPercence.Text
+                ElseIf cbDisType.Text = "$" Then
+                    disprice = txtDisPercence.Text
+                    dispricePercence = (txtDisPercence.Text / proList.Sum(Function(x) x.price)) * 100
+                ElseIf cbDisType.Text = "៛" Then
+                    disprice = txtDisPercence.Text / txtExchangeRate.Text
+                    dispricePercence = ((txtDisPercence.Text / txtExchangeRate.Text) / proList.Sum(Function(x) x.price)) * 100
+                End If
+            Else
+                disprice = 0
+            End If
+            total_amount = proList.Sum(Function(x) x.price) - disprice
+
+            lbUSD.Text = total_amount.ToString("C")
+        Catch ex As Exception
+
+        End Try
+        lbKHR.Text = (total_amount * Val(txtExchangeRate.Text)).ToString("N0") & "៛"
+        regenerateIvoice()
+    End Sub
+
+    Private Sub txtExchangeRate_TextChanged_1(sender As Object, e As EventArgs) Handles txtExchangeRate.TextChanged
+        regenerateIvoice()
     End Sub
 End Class
